@@ -1,4 +1,6 @@
-<!-- © 2026 ACKFIX. All rights reserved. Copy, modification or redistribution without written permission is prohibited. -->
+<!--
+© 2026 ACKFIX. All rights reserved. Unauthorized copying, modification or redistribution is prohibited.
+-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1133,7 +1135,7 @@ const SND={
   shoot(){if(can('sh',.08))TH.shootSnd();},
   hit(){if(can('hit',.05))noise(.05,.09,2200);},
   kill(){if(can('k',.06))tone(240,.1,'triangle',.08,90);},
-  gem(v){if(!can('g',.05))return;gemPitch=Math.min(gemPitch+1,14);const PEN=[0,2,4,7,9],n=PEN[gemPitch%5]+12*Math.floor(gemPitch/5),f=392*Math.pow(2,n/12),t=AC.currentTime;tone(f,.08,'triangle',.075,f*1.18);if(v>=5)tone(f*1.5,.1,'sine',.05,0,null,t+.05);},
+  gem(v){if(!can('g',.05))return;gemPitch=Math.min(Math.floor(gemPitch)+1,14);const gp=gemPitch|0,PEN=[0,2,4,7,9],n=PEN[gp%5]+12*Math.floor(gp/5),f=392*Math.pow(2,n/12),t=AC.currentTime;tone(f,.08,'triangle',.075,f*1.18);if(v>=5)tone(f*1.5,.1,'sine',.05,0,null,t+.05);},
   laser(){if(!can('ls',.1))return;tone(1500,.2,'sawtooth',.05,260);noise(.12,.05,3200,null,null,true);},
   nova(){if(!can('nv',.2))return;tone(170,.4,'sine',.2,38);noise(.28,.1,900);},
   lvl(){const t=AC.currentTime;[1046.5,1318.5,1568,2093,1568,2093,2637].forEach((f,i)=>bell(f,t+i*.07,.12,.5));for(let k=0;k<10;k++)bell(2637+Math.random()*2000,t+.5+k*.04,.035,.25);},
