@@ -22,7 +22,8 @@ const G=[
 ['zomblitz','Zomblitz',fr?'Survis aux hordes de zombies.':'Survive the zombie hordes.'],
 ['driftblitz','Drift Blitz',fr?'Course de drift arcade.':'Arcade drift racing.'],
 ['fortlitz','Fortlitz',fr?'Défends ton fort, 100 vagues.':'Defend your fort, 100 waves.'],
-['snakelitz','Snakelitz',fr?'Mange, grandis, deviens le plus long.':'Eat, grow, be the longest.']];
+['snakelitz','Snakelitz',fr?'Mange, grandis, deviens le plus long.':'Eat, grow, be the longest.'],
+['trafficblitz','Traffic Blitz',fr?'Fonce dans la circulation en 3D.':'Race through 3D traffic.']];
 document.getElementById('sub').textContent=fr?'Jeux gratuits, directement dans ton navigateur':'Free games, right in your browser';
 document.getElementById('g').innerHTML=G.map(([d,n,s])=>`<a class="card" href="${d}/"><img src="${d}/thumb.jpg" alt="${n}"><div class="in"><b>${n}</b><span>${s}</span><i>${fr?'JOUER':'PLAY'}</i></div></a>`).join('');
 </script></body></html>
