@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ACKFIX Games</title><meta name="description" content="Jeux gratuits dans le navigateur, sans installation.">
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:#0d0f17;color:#eef2f8;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{text-align:center;padding:clamp(24px,6vh,56px) 16px 8px}
+h1{margin:0;font-size:clamp(34px,7vw,64px);font-weight:900;letter-spacing:3px;background:linear-gradient(90deg,#7cf06a,#2fd3e0,#b06cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{margin:8px 0 0;opacity:.7}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;max-width:1000px;margin:24px auto;padding:0 16px}
+a.card{display:block;background:#161b2b;border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;border:2px solid #232a45;transition:transform .15s,border-color .15s}
+a.card:hover{transform:translateY(-4px);border-color:#7cf06a}
+a.card img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.in{padding:12px 14px 16px}.in b{display:block;font-size:20px}.in span{display:block;opacity:.7;font-size:14px;margin:4px 0 10px;min-height:2.6em}
+.in i{display:inline-block;background:#7cf06a;color:#0c2a08;border-radius:10px;padding:7px 20px;font-style:normal;font-weight:900}
+footer{text-align:center;opacity:.45;font-size:13px;padding:20px}
+</style></head><body>
+<header><h1>ACKFIX GAMES</h1><p id="sub"></p></header>
+<div class="grid" id="g"></div><footer>© ACKFIX</footer>
+<script>
+const fr=(navigator.language||'en').toLowerCase().startsWith('fr');
+const G=[
+['zomblitz','Zomblitz',fr?'Survis aux hordes de zombies.':'Survive the zombie hordes.'],
+['driftblitz','Drift Blitz',fr?'Course de drift arcade.':'Arcade drift racing.'],
+['fortlitz','Fortlitz',fr?'Défends ton fort, 100 vagues.':'Defend your fort, 100 waves.'],
+['snakelitz','Snakelitz',fr?'Mange, grandis, deviens le plus long.':'Eat, grow, be the longest.']];
+document.getElementById('sub').textContent=fr?'Jeux gratuits, directement dans ton navigateur':'Free games, right in your browser';
+document.getElementById('g').innerHTML=G.map(([d,n,s])=>`<a class="card" href="${d}/"><img src="${d}/thumb.jpg" alt="${n}"><div class="in"><b>${n}</b><span>${s}</span><i>${fr?'JOUER':'PLAY'}</i></div></a>`).join('');
+</script></body></html>
