@@ -95,7 +95,7 @@ input#nick{background:#17201a;border:2px solid #2c3a31;border-radius:10px;color:
 </head>
 <body>
 <canvas id="c"></canvas>
-<div id="top"><span class="chip" id="hGold">💰 0</span><span class="chip" id="hLives">❤️ 20</span><span class="chip" id="hWave"></span><span class="sp"></span><button id="nextBtn" class="go"></button><button id="spdBtn">×1</button><button id="pauseBtn">❚❚</button></div>
+<div id="top"><span class="chip" id="hGold">0</span><span class="chip" id="hLives">20</span><span class="chip" id="hWave"></span><span class="sp"></span><button id="nextBtn" class="go"></button><button id="spdBtn">×1</button><button id="pauseBtn">❚❚</button></div>
 <div id="bar"></div>
 <div id="pop"><b id="popName"></b><div class="inf" id="popInf"></div><button class="up" id="popUp"></button><button class="sell" id="popSell"></button></div>
 <div id="msg"></div><div id="tip"></div>
@@ -141,16 +141,16 @@ input#nick{background:#17201a;border:2px solid #2c3a31;border-radius:10px;color:
 const LANGS=[['fr','Français'],['en','English'],['de','Deutsch'],['it','Italiano'],['es','Español'],['pt','Português'],['tr','Türkçe'],['sr','Srpski'],['nl','Nederlands'],['pl','Polski'],['ru','Русский'],['sq','Shqip']];
 const TR={
 play:'DÉFENDRE|DEFEND|VERTEIDIGEN|DIFENDI|DEFENDER|DEFENDER|SAVUN|BRANI|VERDEDIG|BROŃ|ЗАЩИЩАТЬ|MBRO',
-customize:'✏️ Personnaliser|✏️ Customize|✏️ Anpassen|✏️ Personalizza|✏️ Personalizar|✏️ Personalizar|✏️ Özelleştir|✏️ Prilagodi|✏️ Aanpassen|✏️ Dostosuj|✏️ Настроить|✏️ Personalizo',
+customize:'Personnaliser|Customize|Anpassen|Personalizza|Personalizar|Personalizar|Özelleştir|Prilagodi|Aanpassen|Dostosuj|Настроить|Personalizo',
 chooseMap:'Choisis ton royaume|Choose your land|Wähle dein Land|Scegli la tua terra|Elige tu tierra|Escolhe a tua terra|Diyarını seç|Izaberi svoju zemlju|Kies je land|Wybierz krainę|Выбери земли|Zgjidh tokën',
 intro:'Construis des tours le long du chemin pour arrêter les monstres avant qu\'ils atteignent ton château. Tiens 100 vagues !|Build towers along the path to stop the monsters before they reach your castle. Survive 100 waves!|Baue Türme am Weg, um die Monster vor deiner Burg aufzuhalten. Überstehe 100 Wellen!|Costruisci torri lungo il sentiero per fermare i mostri prima del castello. Resisti 100 ondate!|Construye torres junto al camino para frenar a los monstruos antes de tu castillo. ¡Aguanta 100 oleadas!|Constrói torres ao longo do caminho para travar os monstros antes do castelo. Aguenta 100 vagas!|Canavarlar kalene ulaşmadan yol boyunca kuleler kur. 100 dalgaya dayan!|Gradi kule duž puta i zaustavi čudovišta pre zamka. Izdrži 100 talasa!|Bouw torens langs het pad en stop de monsters voor je kasteel. Overleef 100 golven!|Buduj wieże przy ścieżce i zatrzymaj potwory przed zamkiem. Przetrwaj 100 fal!|Строй башни у дороги и останови монстров до замка. Продержись 100 волн!|Ndërto kulla përgjatë rrugës dhe ndalo përbindëshat para kështjellës. Mbijeto 100 valë!',
-controls:'🖱️ Choisis une tour puis touche une case · 1-5 : tours · Espace : vague · Échap : pause|🖱️ Pick a tower then tap a tile · 1-5: towers · Space: wave · Esc: pause|🖱️ Turm wählen, dann Feld antippen · 1-5: Türme · Leertaste: Welle · Esc: Pause|🖱️ Scegli una torre e tocca una casella · 1-5: torri · Spazio: ondata · Esc: pausa|🖱️ Elige una torre y toca una casilla · 1-5: torres · Espacio: oleada · Esc: pausa|🖱️ Escolhe uma torre e toca numa casa · 1-5: torres · Espaço: vaga · Esc: pausa|🖱️ Kule seç, sonra kareye dokun · 1-5: kuleler · Boşluk: dalga · Esc: duraklat|🖱️ Izaberi kulu pa polje · 1-5: kule · Razmak: talas · Esc: pauza|🖱️ Kies een toren en tik een vak · 1-5: torens · Spatie: golf · Esc: pauze|🖱️ Wybierz wieżę i dotknij pola · 1-5: wieże · Spacja: fala · Esc: pauza|🖱️ Выбери башню и клетку · 1-5: башни · Пробел: волна · Esc: пауза|🖱️ Zgjidh kullën dhe prek një kuti · 1-5: kullat · Hapësira: valë · Esc: pauzë',
+controls:'Choisis une tour puis touche une case · 1-5 : tours · Espace : vague · Échap : pause|Pick a tower then tap a tile · 1-5: towers · Space: wave · Esc: pause|Turm wählen, dann Feld antippen · 1-5: Türme · Leertaste: Welle · Esc: Pause|Scegli una torre e tocca una casella · 1-5: torri · Spazio: ondata · Esc: pausa|Elige una torre y toca una casilla · 1-5: torres · Espacio: oleada · Esc: pausa|Escolhe uma torre e toca numa casa · 1-5: torres · Espaço: vaga · Esc: pausa|Kule seç, sonra kareye dokun · 1-5: kuleler · Boşluk: dalga · Esc: duraklat|Izaberi kulu pa polje · 1-5: kule · Razmak: talas · Esc: pauza|Kies een toren en tik een vak · 1-5: torens · Spatie: golf · Esc: pauze|Wybierz wieżę i dotknij pola · 1-5: wieże · Spacja: fala · Esc: pauza|Выбери башню и клетку · 1-5: башни · Пробел: волна · Esc: пауза|Zgjidh kullën dhe prek një kuti · 1-5: kullat · Hapësira: valë · Esc: pauzë',
 easy:'Facile|Easy|Leicht|Facile|Fácil|Fácil|Kolay|Lako|Makkelijk|Łatwy|Легко|Lehtë',
 normal:'Normal|Normal|Normal|Normale|Normal|Normal|Normal|Normalno|Normaal|Normalny|Нормально|Normal',
 hard:'Difficile|Hard|Schwer|Difficile|Difícil|Difícil|Zor|Teško|Moeilijk|Trudny|Сложно|Vështirë',
 kingdom:'Ton royaume|Your kingdom|Dein Königreich|Il tuo regno|Tu reino|O teu reino|Krallığın|Tvoje kraljevstvo|Jouw koninkrijk|Twoje królestwo|Твоё королевство|Mbretëria jote',
 nickPh:'Nom du royaume|Kingdom name|Name des Reichs|Nome del regno|Nombre del reino|Nome do reino|Krallık adı|Ime kraljevstva|Naam van je rijk|Nazwa królestwa|Название королевства|Emri i mbretërisë',
-random:'🎲 Au hasard|🎲 Random|🎲 Zufällig|🎲 Casuale|🎲 Al azar|🎲 Aleatório|🎲 Rastgele|🎲 Nasumično|🎲 Willekeurig|🎲 Losowo|🎲 Случайно|🎲 Rastësisht',
+random:'Au hasard|Random|Zufällig|Casuale|Al azar|Aleatório|Rastgele|Nasumično|Willekeurig|Losowo|Случайно|Rastësisht',
 ok:'C\'est bon !|Done!|Fertig!|Fatto!|¡Listo!|Pronto!|Tamam!|Gotovo!|Klaar!|Gotowe!|Готово!|Gati!',
 tRoof:'Toits|Roofs|Dächer|Tetti|Tejados|Telhados|Çatılar|Krovovi|Daken|Dachy|Крыши|Çatitë',
 tStone:'Pierre|Stone|Stein|Pietra|Piedra|Pedra|Taş|Kamen|Steen|Kamień|Камень|Gur',
@@ -167,18 +167,18 @@ dFrost:'Ralentit les ennemis|Slows enemies|Verlangsamt Gegner|Rallenta i nemici|
 dTesla:'Éclair en chaîne, perce l\'armure|Chain lightning, pierces armor|Kettenblitz, durchdringt Rüstung|Fulmine a catena, perfora armature|Rayo en cadena, atraviesa armadura|Raio em cadeia, perfura armadura|Zincirleme şimşek, zırh deler|Lančana munja, probija oklop|Kettingbliksem, doorboort pantser|Łańcuch piorunów, przebija pancerz|Цепная молния, пробивает броню|Rrufe zinxhir, shpon armaturën',
 dBallista:'Très longue portée, perce l\'armure|Very long range, pierces armor|Große Reichweite, durchdringt Rüstung|Lunghissima gittata, perfora armature|Gran alcance, atraviesa armadura|Grande alcance, perfura armadura|Çok uzun menzil, zırh deler|Veliki domet, probija oklop|Groot bereik, doorboort pantser|Duży zasięg, przebija pancerz|Огромная дальность, пробивает броню|Rreze e madhe, shpon armaturën',
 lvl:'Niv. {0}|Lvl {0}|Stufe {0}|Liv. {0}|Niv. {0}|Nív. {0}|Svy {0}|Niv. {0}|Niv. {0}|Poz. {0}|Ур. {0}|Niv. {0}',
-upgrade:'⬆️ Améliorer {0}|⬆️ Upgrade {0}|⬆️ Verbessern {0}|⬆️ Migliora {0}|⬆️ Mejorar {0}|⬆️ Melhorar {0}|⬆️ Yükselt {0}|⬆️ Unapredi {0}|⬆️ Upgrade {0}|⬆️ Ulepsz {0}|⬆️ Улучшить {0}|⬆️ Përmirëso {0}',
-maxed:'⭐ Niveau max|⭐ Max level|⭐ Max. Stufe|⭐ Livello max|⭐ Nivel máx.|⭐ Nível máx.|⭐ Maks. seviye|⭐ Maks. nivo|⭐ Max niveau|⭐ Maks. poziom|⭐ Макс. уровень|⭐ Niveli maks.',
-sell:'💰 Vendre +{0}|💰 Sell +{0}|💰 Verkaufen +{0}|💰 Vendi +{0}|💰 Vender +{0}|💰 Vender +{0}|💰 Sat +{0}|💰 Prodaj +{0}|💰 Verkoop +{0}|💰 Sprzedaj +{0}|💰 Продать +{0}|💰 Shit +{0}',
+upgrade:'Améliorer {0}|Upgrade {0}|Verbessern {0}|Migliora {0}|Mejorar {0}|Melhorar {0}|Yükselt {0}|Unapredi {0}|Upgrade {0}|Ulepsz {0}|Улучшить {0}|Përmirëso {0}',
+maxed:'Niveau max|Max level|Max. Stufe|Livello max|Nivel máx.|Nível máx.|Maks. seviye|Maks. nivo|Max niveau|Maks. poziom|Макс. уровень|Niveli maks.',
+sell:'Vendre +{0}|Sell +{0}|Verkaufen +{0}|Vendi +{0}|Vender +{0}|Vender +{0}|Sat +{0}|Prodaj +{0}|Verkoop +{0}|Sprzedaj +{0}|Продать +{0}|Shit +{0}',
 wave:'Vague {0}/{1}|Wave {0}/{1}|Welle {0}/{1}|Ondata {0}/{1}|Oleada {0}/{1}|Vaga {0}/{1}|Dalga {0}/{1}|Talas {0}/{1}|Golf {0}/{1}|Fala {0}/{1}|Волна {0}/{1}|Vala {0}/{1}',
 next:'▶ Vague|▶ Wave|▶ Welle|▶ Ondata|▶ Oleada|▶ Vaga|▶ Dalga|▶ Talas|▶ Golf|▶ Fala|▶ Волна|▶ Vala',
 nextIn:'▶ {0}s|▶ {0}s|▶ {0}s|▶ {0}s|▶ {0}s|▶ {0}s|▶ {0}sn|▶ {0}s|▶ {0}s|▶ {0}s|▶ {0}с|▶ {0}s',
 waveN:'Vague {0}|Wave {0}|Welle {0}|Ondata {0}|Oleada {0}|Vaga {0}|Dalga {0}|Talas {0}|Golf {0}|Fala {0}|Волна {0}|Vala {0}',
-boss:'⚠️ BOSS !|⚠️ BOSS!|⚠️ BOSS!|⚠️ BOSS!|⚠️ ¡JEFE!|⚠️ CHEFE!|⚠️ BOSS!|⚠️ BOS!|⚠️ BAAS!|⚠️ BOSS!|⚠️ БОСС!|⚠️ BOS!',
-flyers:'🦇 Volants !|🦇 Flyers!|🦇 Flieger!|🦇 Volanti!|🦇 ¡Voladores!|🦇 Voadores!|🦇 Uçanlar!|🦇 Leteći!|🦇 Vliegers!|🦇 Latające!|🦇 Летуны!|🦇 Fluturues!',
+boss:'BOSS !|BOSS!|BOSS!|BOSS!|¡JEFE!|CHEFE!|BOSS!|BOS!|BAAS!|BOSS!|БОСС!|BOS!',
+flyers:'Volants !|Flyers!|Flieger!|Volanti!|¡Voladores!|Voadores!|Uçanlar!|Leteći!|Vliegers!|Latające!|Летуны!|Fluturues!',
 noGold:'Pas assez d\'or|Not enough gold|Nicht genug Gold|Oro insufficiente|No hay suficiente oro|Ouro insuficiente|Yetersiz altın|Nema dovoljno zlata|Niet genoeg goud|Za mało złota|Мало золота|Nuk ka mjaft ar',
 noAir:'Sol uniquement|Ground only|Nur Boden|Solo terra|Solo tierra|Só terra|Sadece yer|Samo zemlja|Alleen grond|Tylko ziemia|Только наземные|Vetëm tokë',
-victory:'🏆 Victoire !|🏆 Victory!|🏆 Sieg!|🏆 Vittoria!|🏆 ¡Victoria!|🏆 Vitória!|🏆 Zafer!|🏆 Pobeda!|🏆 Overwinning!|🏆 Zwycięstwo!|🏆 Победа!|🏆 Fitore!',
+victory:'Victoire !|Victory!|Sieg!|Vittoria!|¡Victoria!|Vitória!|Zafer!|Pobeda!|Overwinning!|Zwycięstwo!|Победа!|Fitore!',
 defeat:'Le château est tombé…|The castle has fallen…|Die Burg ist gefallen…|Il castello è caduto…|El castillo ha caído…|O castelo caiu…|Kale düştü…|Zamak je pao…|Het kasteel is gevallen…|Zamek upadł…|Замок пал…|Kështjella ra…',
 reached:'Vague {0} atteinte · Record : vague {1}|Reached wave {0} · Best: wave {1}|Welle {0} erreicht · Rekord: Welle {1}|Ondata {0} raggiunta · Record: ondata {1}|Oleada {0} alcanzada · Récord: oleada {1}|Vaga {0} alcançada · Recorde: vaga {1}|Dalga {0} · Rekor: dalga {1}|Talas {0} · Rekord: talas {1}|Golf {0} gehaald · Record: golf {1}|Fala {0} · Rekord: fala {1}|Волна {0} · Рекорд: волна {1}|Vala {0} · Rekord: vala {1}',
 winInfo:'{0} vies restantes|{0} lives left|{0} Leben übrig|{0} vite rimaste|{0} vidas restantes|{0} vidas restantes|{0} can kaldı|{0} života preostalo|{0} levens over|{0} żyć zostało|Осталось жизней: {0}|{0} jetë të mbetura',
@@ -187,15 +187,15 @@ resume:'Reprendre|Resume|Weiter|Riprendi|Continuar|Continuar|Devam|Nastavi|Verde
 restart:'Recommencer|Restart|Neustart|Ricomincia|Reiniciar|Recomeçar|Yeniden|Ponovo|Herstart|Od nowa|Заново|Rifillo',
 menu:'Menu|Menu|Menü|Menu|Menú|Menu|Menü|Meni|Menu|Menu|Меню|Menu',
 again:'Rejouer|Play again|Nochmal|Rigioca|Otra vez|Outra vez|Tekrar|Ponovo|Opnieuw|Jeszcze raz|Ещё раз|Përsëri',
-volm:'🎵 Musique|🎵 Music|🎵 Musik|🎵 Musica|🎵 Música|🎵 Música|🎵 Müzik|🎵 Muzika|🎵 Muziek|🎵 Muzyka|🎵 Музыка|🎵 Muzika',
-vol:'🔊 Effets|🔊 Effects|🔊 Effekte|🔊 Effetti|🔊 Efectos|🔊 Efeitos|🔊 Efektler|🔊 Efekti|🔊 Effecten|🔊 Efekty|🔊 Эффекты|🔊 Efektet',
+volm:'Musique|Music|Musik|Musica|Música|Música|Müzik|Muzika|Muziek|Muzyka|Музыка|Muzika',
+vol:'Effets|Effects|Effekte|Effetti|Efectos|Efeitos|Efektler|Efekti|Effecten|Efekty|Эффекты|Efektet',
 mute:'Couper le son|Mute|Ton aus|Muto|Silencio|Sem som|Sessiz|Bez zvuka|Geluid uit|Wycisz|Без звука|Pa zë',
 mMeadow:'La prairie|The meadow|Die Wiese|Il prato|La pradera|O prado|Çayır|Livada|De weide|Łąka|Луг|Livadhi',
 mDesert:'Le désert|The desert|Die Wüste|Il deserto|El desierto|O deserto|Çöl|Pustinja|De woestijn|Pustynia|Пустыня|Shkretëtira',
 mSnow:'Les neiges|The snowfields|Der Schnee|Le nevi|Las nieves|As neves|Karlar|Snegovi|De sneeuw|Śniegi|Снега|Dëborat',
 mVolcano:'Le volcan|The volcano|Der Vulkan|Il vulcano|El volcán|O vulcão|Yanardağ|Vulkan|De vulkaan|Wulkan|Вулкан|Vullkani',
 mSwamp:'Le marais|The swamp|Der Sumpf|La palude|El pantano|O pântano|Bataklık|Močvara|Het moeras|Bagno|Болото|Këneta',
-milestone:'🏆 Palier {0} ! +{1} 💰|🏆 Milestone {0}! +{1} 💰|🏆 Etappe {0}! +{1} 💰|🏆 Traguardo {0}! +{1} 💰|🏆 ¡Hito {0}! +{1} 💰|🏆 Marco {0}! +{1} 💰|🏆 Aşama {0}! +{1} 💰|🏆 Prekretnica {0}! +{1} 💰|🏆 Mijlpaal {0}! +{1} 💰|🏆 Etap {0}! +{1} 💰|🏆 Рубеж {0}! +{1} 💰|🏆 Pikë kyçe {0}! +{1} 💰',
+milestone:'Palier {0} ! +{1} |Milestone {0}! +{1} |Etappe {0}! +{1} |Traguardo {0}! +{1} |¡Hito {0}! +{1} |Marco {0}! +{1} |Aşama {0}! +{1} |Prekretnica {0}! +{1} |Mijlpaal {0}! +{1} |Etap {0}! +{1} |Рубеж {0}! +{1} |Pikë kyçe {0}! +{1} ',
 cont:'▶ Continuer (vague {0})|▶ Continue (wave {0})|▶ Weiter (Welle {0})|▶ Continua (ondata {0})|▶ Continuar (oleada {0})|▶ Continuar (vaga {0})|▶ Devam (dalga {0})|▶ Nastavi (talas {0})|▶ Verder (golf {0})|▶ Kontynuuj (fala {0})|▶ Продолжить (волна {0})|▶ Vazhdo (vala {0})',
 starsInfo:'★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100|★ 25 · ★★ 50 · ★★★ 100',
 mBeach:'La côte|The coast|Die Küste|La costa|La costa|A costa|Sahil|Obala|De kust|Wybrzeże|Побережье|Bregu'
@@ -616,7 +616,7 @@ function render(){
 }
 
 /* ================= INTERFACE ================= */
-function updTop(){$('hGold').textContent='💰 '+gold;$('hLives').textContent='❤️ '+lives;$('hWave').textContent=t('wave',Math.max(1,wave),WAVES);updNext();}
+function updTop(){$('hGold').innerHTML='<svg class="ic" viewBox="0 0 24 24" width="1.1em" height="1.1em" style="vertical-align:-.2em"><circle cx="12" cy="12" r="10" fill="#f5c542" stroke="#8a6a10" stroke-width="2"/><circle cx="12" cy="12" r="6" fill="none" stroke="#c99a1a" stroke-width="2"/></svg> '+gold;$('hLives').innerHTML='<svg class="ic" viewBox="0 0 24 24" width="1.1em" height="1.1em" style="vertical-align:-.2em"><path d="M12 21C3 14 2 9 5 6s6-1 7 2c1-3 4-5 7-2s2 8-7 15z" fill="#ff3b4e" stroke="#7a1020" stroke-width="1.6"/></svg> '+lives;$('hWave').textContent=t('wave',Math.max(1,wave),WAVES);updNext();}
 function updNext(){const b=$('nextBtn');if(wave>=WAVES){b.style.display='none';return;}b.style.display='';b.textContent=wave===0||spawnQ.length===0&&enemies.length===0?t('next')+(wave>0?' '+Math.ceil(nextT)+'s':''):t('nextIn',Math.ceil(Math.max(0,nextT)));}
 function renderBar(){const bar=$('bar');if(!bar.children.length){bar.innerHTML=TKEYS.map((k,i)=>`<button data-t="${k}"><canvas width="112" height="112"></canvas><i class="k">${i+1}</i><span></span></button>`).join('');}
   [...bar.children].forEach(b=>{const k=b.dataset.t,T=TOW[k];b.querySelector('span').textContent=T.cost;b.classList.toggle('sel',sel===k);b.classList.toggle('no',gold<T.cost);b.title=t(T.k)+' — '+t(T.d);
@@ -650,7 +650,7 @@ function mapPreview(M){return mk(300,170,g=>{const cs=300/GW;g.fillStyle=M.g1;g.
   for(const[x,y]of M.decoList){g.fillStyle='rgba(0,0,0,.25)';g.beginPath();g.arc((x+.5)*cs,(y+.5)*cs,cs*.3,0,TAU);g.fill();}
   const[ex,ey]=M.end;g.fillStyle='#ffd86b';g.beginPath();g.arc(clamp(ex+.5,.5,GW-.5)*cs,clamp(ey+.5,.5,GH-.5)*cs,cs*.4,0,TAU);g.fill();}).toDataURL();}
 const MAPIMG=MAPS.map(mapPreview);
-function renderMaps(){updCont();$('maps').innerHTML=MAPS.map((M,i)=>{const b=BEST[i+'_'+custom.diff];const st=b&&b.wave?(b.stars?'★'.repeat(b.stars)+' ':'')+'🏁'+b.wave:'';return`<div class="map ${i===custom.map?'sel':''}" data-m="${i}"><img src="${MAPIMG[i]}" alt=""><span class="st">${st}</span><div>${t(M.k)}</div></div>`;}).join('');}
+function renderMaps(){updCont();$('maps').innerHTML=MAPS.map((M,i)=>{const b=BEST[i+'_'+custom.diff];const st=b&&b.wave?(b.stars?'★'.repeat(b.stars)+' ':'')+''+b.wave:'';return`<div class="map ${i===custom.map?'sel':''}" data-m="${i}"><img src="${MAPIMG[i]}" alt=""><span class="st">${st}</span><div>${t(M.k)}</div></div>`;}).join('');}
 function renderDiff(){$('diff').innerHTML=['easy','normal','hard'].map((k,i)=>`<button data-d="${i}" class="${custom.diff===i?'sel':''}">${t(k)}</button>`).join('');}
 function drawPrev(cnv){const g=cnv.getContext('2d'),s=cnv.width;g.clearRect(0,0,s,s);g.fillStyle=MAP.g1;rr(g,0,0,s,s,s*.12);g.fill();
   const c=castleImg(s*.5);g.drawImage(c,s*.42,s*.18,s*.5*1.6*.75,s*.5*1.6*.75);

@@ -88,7 +88,7 @@ input#nick,input#nick2{background:#161b2b;border:2px solid #2a3150;border-radius
 </head>
 <body>
 <canvas id="c"></canvas>
-<div id="hud"><div id="hLen"></div><div id="lb"></div><canvas id="mini" width="220" height="220"></canvas><button id="pauseBtn">❚❚</button><button id="boostBtn">⚡</button></div>
+<div id="hud"><div id="hLen"></div><div id="lb"></div><canvas id="mini" width="220" height="220"></canvas><button id="pauseBtn">❚❚</button><button id="boostBtn"><svg viewBox="0 0 24 24" width="1em" height="1em"><path d="M14 1L4 14h7l-2 9 11-14h-7z" fill="#ffd21f" stroke="#15181f" stroke-width="1.5" stroke-linejoin="round"/></svg></button></div>
 <div id="msg"></div>
 
 <div class="overlay show" id="menu">
@@ -133,15 +133,15 @@ input#nick,input#nick2{background:#161b2b;border:2px solid #2a3150;border-radius
 const LANGS=[['fr','Français'],['en','English'],['de','Deutsch'],['it','Italiano'],['es','Español'],['pt','Português'],['tr','Türkçe'],['sr','Srpski'],['nl','Nederlands'],['pl','Polski'],['ru','Русский'],['sq','Shqip']];
 const TR={
 play:'JOUER|PLAY|SPIELEN|GIOCA|JUGAR|JOGAR|OYNA|IGRAJ|SPELEN|GRAJ|ИГРАТЬ|LUAJ',
-customize:'✏️ Personnaliser|✏️ Customize|✏️ Anpassen|✏️ Personalizza|✏️ Personalizar|✏️ Personalizar|✏️ Özelleştir|✏️ Prilagodi|✏️ Aanpassen|✏️ Dostosuj|✏️ Настроить|✏️ Personalizo',
+customize:'Personnaliser|Customize|Anpassen|Personalizza|Personalizar|Personalizar|Özelleştir|Prilagodi|Aanpassen|Dostosuj|Настроить|Personalizo',
 chooseMap:'Choisis ton arène|Choose your arena|Wähle deine Arena|Scegli la tua arena|Elige tu arena|Escolhe a tua arena|Arenanı seç|Izaberi arenu|Kies je arena|Wybierz arenę|Выбери арену|Zgjidh arenën',
 intro:'Mange pour grandir, coupe la route aux autres serpents et deviens le plus long de l\'arène !|Eat to grow, cut off the other snakes and become the longest in the arena!|Friss, um zu wachsen, schneide anderen Schlangen den Weg ab und werde die längste!|Mangia per crescere, taglia la strada agli altri serpenti e diventa il più lungo!|¡Come para crecer, córtales el paso a las otras serpientes y sé la más larga!|Come para crescer, corta o caminho às outras cobras e torna-te a mais longa!|Büyümek için ye, diğer yılanların önünü kes ve arenanın en uzunu ol!|Jedi da rasteš, preseci put drugim zmijama i postani najduža!|Eet om te groeien, sny andere slangen af en word de langste!|Jedz, by rosnąć, odcinaj drogę innym wężom i bądź najdłuższy!|Ешь, чтобы расти, подрезай других змей и стань самой длинной!|Ha për t\'u rritur, prit rrugën e gjarpërinjve të tjerë dhe bëhu më i gjati!',
-controls:'🖱️ La souris dirige · Clic ou Espace : turbo · Échap : pause|🖱️ Mouse steers · Click or Space: boost · Esc: pause|🖱️ Maus lenkt · Klick oder Leertaste: Boost · Esc: Pause|🖱️ Il mouse guida · Clic o Spazio: turbo · Esc: pausa|🖱️ El ratón dirige · Clic o Espacio: turbo · Esc: pausa|🖱️ O rato dirige · Clique ou Espaço: turbo · Esc: pausa|🖱️ Fare yönlendirir · Tık veya Boşluk: turbo · Esc: duraklat|🖱️ Miš upravlja · Klik ili Razmak: turbo · Esc: pauza|🖱️ Muis stuurt · Klik of Spatie: boost · Esc: pauze|🖱️ Mysz steruje · Klik lub Spacja: turbo · Esc: pauza|🖱️ Мышь управляет · Клик или Пробел: ускорение · Esc: пауза|🖱️ Miu drejton · Klik ose Hapësira: turbo · Esc: pauzë',
+controls:'La souris dirige · Clic ou Espace : turbo · Échap : pause|Mouse steers · Click or Space: boost · Esc: pause|Maus lenkt · Klick oder Leertaste: Boost · Esc: Pause|Il mouse guida · Clic o Spazio: turbo · Esc: pausa|El ratón dirige · Clic o Espacio: turbo · Esc: pausa|O rato dirige · Clique ou Espaço: turbo · Esc: pausa|Fare yönlendirir · Tık veya Boşluk: turbo · Esc: duraklat|Miš upravlja · Klik ili Razmak: turbo · Esc: pauza|Muis stuurt · Klik of Spatie: boost · Esc: pauze|Mysz steruje · Klik lub Spacja: turbo · Esc: pauza|Мышь управляет · Клик или Пробел: ускорение · Esc: пауза|Miu drejton · Klik ose Hapësira: turbo · Esc: pauzë',
 easy:'Calme|Chill|Entspannt|Tranquilla|Tranquila|Calma|Sakin|Mirno|Rustig|Spokojnie|Спокойно|Qetë',
 normal:'Normal|Normal|Normal|Normale|Normal|Normal|Normal|Normalno|Normaal|Normalny|Нормально|Normal',
 hard:'Féroce|Fierce|Wild|Feroce|Feroz|Feroz|Vahşi|Žestoko|Fel|Dziko|Жёстко|Egër',
 nickPh:'Ton pseudo|Your nickname|Dein Spitzname|Il tuo nickname|Tu apodo|A tua alcunha|Takma adın|Tvoj nadimak|Je bijnaam|Twój nick|Твой ник|Pseudonimi yt',
-random:'🎲 Au hasard|🎲 Random|🎲 Zufällig|🎲 Casuale|🎲 Al azar|🎲 Aleatório|🎲 Rastgele|🎲 Nasumično|🎲 Willekeurig|🎲 Losowo|🎲 Случайно|🎲 Rastësisht',
+random:'Au hasard|Random|Zufällig|Casuale|Al azar|Aleatório|Rastgele|Nasumično|Willekeurig|Losowo|Случайно|Rastësisht',
 ok:'C\'est bon !|Done!|Fertig!|Fatto!|¡Listo!|Pronto!|Tamam!|Gotovo!|Klaar!|Gotowe!|Готово!|Gati!',
 tCol:'Couleur|Color|Farbe|Colore|Color|Cor|Renk|Boja|Kleur|Kolor|Цвет|Ngjyra',
 tCol2:'2e couleur|2nd color|2. Farbe|2° colore|2.º color|2.ª cor|2. renk|2. boja|2e kleur|2. kolor|2-й цвет|Ngjyra 2',
@@ -166,16 +166,16 @@ sKills:'Serpents mangés|Snakes eaten|Gefressene Schlangen|Serpenti mangiati|Ser
 sRank:'Meilleur rang|Best rank|Bester Platz|Miglior posizione|Mejor puesto|Melhor posição|En iyi sıra|Najbolje mesto|Beste plaats|Najlepsze miejsce|Лучшее место|Vendi më i mirë',
 sTime:'Temps|Time|Zeit|Tempo|Tiempo|Tempo|Süre|Vreme|Tijd|Czas|Время|Koha',
 record:'Record : {0}|Best: {0}|Rekord: {0}|Record: {0}|Récord: {0}|Recorde: {0}|Rekor: {0}|Rekord: {0}|Record: {0}|Rekord: {0}|Рекорд: {0}|Rekord: {0}',
-newRec:'🔥 Nouveau record !|🔥 New record!|🔥 Neuer Rekord!|🔥 Nuovo record!|🔥 ¡Nuevo récord!|🔥 Novo recorde!|🔥 Yeni rekor!|🔥 Novi rekord!|🔥 Nieuw record!|🔥 Nowy rekord!|🔥 Новый рекорд!|🔥 Rekord i ri!',
-first:'👑 Tu es n°1 !|👑 You are #1!|👑 Du bist die Nr. 1!|👑 Sei il n°1!|👑 ¡Eres el n.º 1!|👑 És o n.º 1!|👑 1 numarasın!|👑 Ti si broj 1!|👑 Jij bent nr. 1!|👑 Jesteś nr 1!|👑 Ты №1!|👑 Je nr. 1!',
+newRec:'Nouveau record !|New record!|Neuer Rekord!|Nuovo record!|¡Nuevo récord!|Novo recorde!|Yeni rekor!|Novi rekord!|Nieuw record!|Nowy rekord!|Новый рекорд!|Rekord i ri!',
+first:'Tu es n°1 !|You are #1!|Du bist die Nr. 1!|Sei il n°1!|¡Eres el n.º 1!|És o n.º 1!|1 numarasın!|Ti si broj 1!|Jij bent nr. 1!|Jesteś nr 1!|Ты №1!|Je nr. 1!',
 killMsg:'+1 serpent !|+1 snake!|+1 Schlange!|+1 serpente!|¡+1 serpiente!|+1 cobra!|+1 yılan!|+1 zmija!|+1 slang!|+1 wąż!|+1 змея!|+1 gjarpër!',
 you:'Toi|You|Du|Tu|Tú|Tu|Sen|Ti|Jij|Ty|Ты|Ti',
 pause:'Pause|Pause|Pause|Pausa|Pausa|Pausa|Duraklatıldı|Pauza|Pauze|Pauza|Пауза|Pauzë',
 resume:'Reprendre|Resume|Weiter|Riprendi|Continuar|Continuar|Devam|Nastavi|Verder|Wznów|Продолжить|Vazhdo',
 menu:'Menu|Menu|Menü|Menu|Menú|Menu|Menü|Meni|Menu|Menu|Меню|Menu',
 again:'Rejouer|Play again|Nochmal|Rigioca|Otra vez|Outra vez|Tekrar|Ponovo|Opnieuw|Jeszcze raz|Ещё раз|Përsëri',
-volm:'🎵 Musique|🎵 Music|🎵 Musik|🎵 Musica|🎵 Música|🎵 Música|🎵 Müzik|🎵 Muzika|🎵 Muziek|🎵 Muzyka|🎵 Музыка|🎵 Muzika',
-vol:'🔊 Effets|🔊 Effects|🔊 Effekte|🔊 Effetti|🔊 Efectos|🔊 Efeitos|🔊 Efektler|🔊 Efekti|🔊 Effecten|🔊 Efekty|🔊 Эффекты|🔊 Efektet',
+volm:'Musique|Music|Musik|Musica|Música|Música|Müzik|Muzika|Muziek|Muzyka|Музыка|Muzika',
+vol:'Effets|Effects|Effekte|Effetti|Efectos|Efeitos|Efektler|Efekti|Effecten|Efekty|Эффекты|Efektet',
 mute:'Couper le son|Mute|Ton aus|Muto|Silencio|Sem som|Sessiz|Bez zvuka|Geluid uit|Wycisz|Без звука|Pa zë',
 aGrass:'Prairie|Meadow|Wiese|Prato|Pradera|Prado|Çayır|Livada|Weide|Łąka|Луг|Livadh',
 aSand:'Désert|Desert|Wüste|Deserto|Desierto|Deserto|Çöl|Pustinja|Woestijn|Pustynia|Пустыня|Shkretëtirë',

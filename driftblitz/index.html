@@ -109,7 +109,7 @@ input#nick{background:#141924;border:2px solid #2a3245;border-radius:10px;color:
   <div class="hb"><div class="spd" id="hSpd">0 <small>km/h</small></div><div class="nitro" id="hNit"><i></i></div></div>
   <div id="msg"></div>
 </div>
-<div id="touch"><button id="tl">◀</button><button id="tr">▶</button><button id="tb">▼</button><button id="tg">▲</button><button id="tn">⚡</button></div>
+<div id="touch"><button id="tl">◀</button><button id="tr">▶</button><button id="tb">▼</button><button id="tg">▲</button><button id="tn"><svg viewBox="0 0 24 24" width="1em" height="1em"><path d="M14 1L4 14h7l-2 9 11-14h-7z" fill="#ffd21f" stroke="#15181f" stroke-width="1.5" stroke-linejoin="round"/></svg></button></div>
 
 <div class="overlay show" id="menu">
   <h1>DRIFT BLITZ</h1>
@@ -153,16 +153,16 @@ input#nick{background:#141924;border:2px solid #2a3245;border-radius:10px;color:
 const LANGS=[['fr','Français'],['en','English'],['de','Deutsch'],['it','Italiano'],['es','Español'],['pt','Português'],['tr','Türkçe'],['sr','Srpski'],['nl','Nederlands'],['pl','Polski'],['ru','Русский'],['sq','Shqip']];
 const TR={
 play:'COURIR|RACE|LOS|CORRI|CORRER|CORRER|YARIŞ|TRKA|RACEN|ŚCIGAJ|ГОНКА|GARO',
-customize:'✏️ Personnaliser|✏️ Customize|✏️ Anpassen|✏️ Personalizza|✏️ Personalizar|✏️ Personalizar|✏️ Özelleştir|✏️ Prilagodi|✏️ Aanpassen|✏️ Dostosuj|✏️ Настроить|✏️ Personalizo',
+customize:'Personnaliser|Customize|Anpassen|Personalizza|Personalizar|Personalizar|Özelleştir|Prilagodi|Aanpassen|Dostosuj|Настроить|Personalizo',
 chooseMap:'Choisis ton circuit|Choose your track|Wähle deine Strecke|Scegli il circuito|Elige tu circuito|Escolhe o circuito|Pistini seç|Izaberi stazu|Kies je circuit|Wybierz tor|Выбери трассу|Zgjidh pistën',
 intro:'Drifte dans les virages pour remplir ton turbo, puis fonce vers la ligne d\'arrivée !|Drift through corners to fill your turbo, then blast to the finish line!|Drifte durch die Kurven, lade deinen Turbo und rase ins Ziel!|Derapa nelle curve per caricare il turbo, poi vola al traguardo!|¡Derrapa en las curvas para llenar el turbo y vuela hacia la meta!|Derrapa nas curvas para encher o turbo e voa até à meta!|Virajlarda drift yap, turbonu doldur ve bitiş çizgisine uç!|Driftuj kroz krivine, napuni turbo i juri do cilja!|Drift door de bochten, vul je turbo en scheur naar de finish!|Driftuj w zakrętach, naładuj turbo i pędź do mety!|Дрифтуй в поворотах, заряжай турбо и мчись к финишу!|Bëj drift në kthesa, mbush turbon dhe vrapo drejt finishit!',
-controls:'⌨️ Flèches / WASD : conduire · Espace : turbo · Échap : pause|⌨️ Arrows / WASD: drive · Space: turbo · Esc: pause|⌨️ Pfeile / WASD: fahren · Leertaste: Turbo · Esc: Pause|⌨️ Frecce / WASD: guida · Spazio: turbo · Esc: pausa|⌨️ Flechas / WASD: conducir · Espacio: turbo · Esc: pausa|⌨️ Setas / WASD: conduzir · Espaço: turbo · Esc: pausa|⌨️ Oklar / WASD: sür · Boşluk: turbo · Esc: duraklat|⌨️ Strelice / WASD: vožnja · Razmak: turbo · Esc: pauza|⌨️ Pijlen / WASD: rijden · Spatie: turbo · Esc: pauze|⌨️ Strzałki / WASD: jazda · Spacja: turbo · Esc: pauza|⌨️ Стрелки / WASD: езда · Пробел: турбо · Esc: пауза|⌨️ Shigjetat / WASD: drejto · Hapësira: turbo · Esc: pauzë',
+controls:'Flèches / WASD : conduire · Espace : turbo · Échap : pause|Arrows / WASD: drive · Space: turbo · Esc: pause|Pfeile / WASD: fahren · Leertaste: Turbo · Esc: Pause|Frecce / WASD: guida · Spazio: turbo · Esc: pausa|Flechas / WASD: conducir · Espacio: turbo · Esc: pausa|Setas / WASD: conduzir · Espaço: turbo · Esc: pausa|Oklar / WASD: sür · Boşluk: turbo · Esc: duraklat|Strelice / WASD: vožnja · Razmak: turbo · Esc: pauza|Pijlen / WASD: rijden · Spatie: turbo · Esc: pauze|Strzałki / WASD: jazda · Spacja: turbo · Esc: pauza|Стрелки / WASD: езда · Пробел: турбо · Esc: пауза|Shigjetat / WASD: drejto · Hapësira: turbo · Esc: pauzë',
 easy:'Facile|Easy|Leicht|Facile|Fácil|Fácil|Kolay|Lako|Makkelijk|Łatwy|Легко|Lehtë',
 normal:'Normal|Normal|Normal|Normale|Normal|Normal|Normal|Normalno|Normaal|Normalny|Нормально|Normal',
 hard:'Difficile|Hard|Schwer|Difficile|Difícil|Difícil|Zor|Teško|Moeilijk|Trudny|Сложно|Vështirë',
 driver:'Ton pilote|Your driver|Dein Fahrer|Il tuo pilota|Tu piloto|O teu piloto|Pilotun|Tvoj vozač|Jouw coureur|Twój kierowca|Твой пилот|Piloti yt',
 nickPh:'Ton pseudo|Your nickname|Dein Spitzname|Il tuo nickname|Tu apodo|A tua alcunha|Takma adın|Tvoj nadimak|Je bijnaam|Twój nick|Твой ник|Pseudonimi yt',
-random:'🎲 Au hasard|🎲 Random|🎲 Zufällig|🎲 Casuale|🎲 Al azar|🎲 Aleatório|🎲 Rastgele|🎲 Nasumično|🎲 Willekeurig|🎲 Losowo|🎲 Случайно|🎲 Rastësisht',
+random:'Au hasard|Random|Zufällig|Casuale|Al azar|Aleatório|Rastgele|Nasumično|Willekeurig|Losowo|Случайно|Rastësisht',
 ok:'C\'est bon !|Done!|Fertig!|Fatto!|¡Listo!|Pronto!|Tamam!|Gotovo!|Klaar!|Gotowe!|Готово!|Gati!',
 tBody:'Carrosserie|Body|Karosserie|Carrozzeria|Carrocería|Carroçaria|Gövde|Karoserija|Carrosserie|Nadwozie|Кузов|Karroceria',
 tColor:'Couleur|Color|Farbe|Colore|Color|Cor|Renk|Boja|Kleur|Kolor|Цвет|Ngjyra',
@@ -182,18 +182,18 @@ resume:'Reprendre|Resume|Weiter|Riprendi|Continuar|Continuar|Devam|Nastavi|Verde
 restart:'Recommencer|Restart|Neustart|Ricomincia|Reiniciar|Recomeçar|Yeniden|Ponovo|Herstart|Od nowa|Заново|Rifillo',
 menu:'Menu|Menu|Menü|Menu|Menú|Menu|Menü|Meni|Menu|Menu|Меню|Menu',
 again:'Rejouer|Race again|Nochmal|Rigioca|Otra vez|Outra vez|Tekrar|Ponovo|Opnieuw|Jeszcze raz|Ещё раз|Përsëri',
-volm:'🎵 Musique|🎵 Music|🎵 Musik|🎵 Musica|🎵 Música|🎵 Música|🎵 Müzik|🎵 Muzika|🎵 Muziek|🎵 Muzyka|🎵 Музыка|🎵 Muzika',
-vol:'🔊 Effets|🔊 Effects|🔊 Effekte|🔊 Effetti|🔊 Efectos|🔊 Efeitos|🔊 Efektler|🔊 Efekti|🔊 Effecten|🔊 Efekty|🔊 Эффекты|🔊 Efektet',
+volm:'Musique|Music|Musik|Musica|Música|Música|Müzik|Muzika|Muziek|Muzyka|Музыка|Muzika',
+vol:'Effets|Effects|Effekte|Effetti|Efectos|Efeitos|Efektler|Efekti|Effecten|Efekty|Эффекты|Efektet',
 mute:'Couper le son|Mute|Ton aus|Muto|Silencio|Sem som|Sessiz|Bez zvuka|Geluid uit|Wycisz|Без звука|Pa zë',
 lap:'Tour {0}/{1}|Lap {0}/{1}|Runde {0}/{1}|Giro {0}/{1}|Vuelta {0}/{1}|Volta {0}/{1}|Tur {0}/{1}|Krug {0}/{1}|Ronde {0}/{1}|Okrążenie {0}/{1}|Круг {0}/{1}|Xhiro {0}/{1}',
 best:'Meilleur tour {0}|Best lap {0}|Beste Runde {0}|Giro migliore {0}|Mejor vuelta {0}|Melhor volta {0}|En iyi tur {0}|Najbolji krug {0}|Snelste ronde {0}|Najlepsze okr. {0}|Лучший круг {0}|Xhiroja më e mirë {0}',
 finalLap:'Dernier tour !|Final lap!|Letzte Runde!|Ultimo giro!|¡Última vuelta!|Última volta!|Son tur!|Poslednji krug!|Laatste ronde!|Ostatnie okrążenie!|Последний круг!|Xhiroja e fundit!',
 wrongWay:'Mauvais sens !|Wrong way!|Falsche Richtung!|Senso sbagliato!|¡Sentido contrario!|Sentido errado!|Ters yön!|Pogrešan smer!|Verkeerde kant!|Zły kierunek!|Не туда!|Drejtim i gabuar!',
 finish:'Arrivée !|Finish!|Ziel!|Traguardo!|¡Meta!|Meta!|Bitiş!|Cilj!|Finish!|Meta!|Финиш!|Finish!',
-place1:'🏆 Victoire !|🏆 You win!|🏆 Sieg!|🏆 Vittoria!|🏆 ¡Victoria!|🏆 Vitória!|🏆 Kazandın!|🏆 Pobeda!|🏆 Gewonnen!|🏆 Zwycięstwo!|🏆 Победа!|🏆 Fitore!',
+place1:'Victoire !|You win!|Sieg!|Vittoria!|¡Victoria!|Vitória!|Kazandın!|Pobeda!|Gewonnen!|Zwycięstwo!|Победа!|Fitore!',
 placeN:'{0}e place|{0}th place|Platz {0}|{0}° posto|{0}.º puesto|{0}.º lugar|{0}. sıra|{0}. mesto|{0}e plaats|{0}. miejsce|{0}-е место|Vendi {0}',
 record:'Record : {0}|Record: {0}|Rekord: {0}|Record: {0}|Récord: {0}|Recorde: {0}|Rekor: {0}|Rekord: {0}|Record: {0}|Rekord: {0}|Рекорд: {0}|Rekord: {0}',
-newRec:'🔥 Nouveau record !|🔥 New record!|🔥 Neuer Rekord!|🔥 Nuovo record!|🔥 ¡Nuevo récord!|🔥 Novo recorde!|🔥 Yeni rekor!|🔥 Novi rekord!|🔥 Nieuw record!|🔥 Nowy rekord!|🔥 Новый рекорд!|🔥 Rekord i ri!',
+newRec:'Nouveau record !|New record!|Neuer Rekord!|Nuovo record!|¡Nuevo récord!|Novo recorde!|Yeni rekor!|Novi rekord!|Nieuw record!|Nowy rekord!|Новый рекорд!|Rekord i ri!',
 you:'Toi|You|Du|Tu|Tú|Tu|Sen|Ti|Jij|Ty|Ты|Ti',
 mCity:'La ville|The city|Die Stadt|La città|La ciudad|A cidade|Şehir|Grad|De stad|Miasto|Город|Qyteti',
 mDesert:'Le désert|The desert|Die Wüste|Il deserto|El desierto|O deserto|Çöl|Pustinja|De woestijn|Pustynia|Пустыня|Shkretëtira',
@@ -201,7 +201,7 @@ mSnow:'La neige|The snow|Der Schnee|La neve|La nieve|A neve|Kar|Sneg|De sneeuw|�
 mNight:'Circuit de nuit|Night circuit|Nachtrennen|Circuito notturno|Circuito nocturno|Circuito noturno|Gece pisti|Noćna staza|Nachtcircuit|Nocny tor|Ночная трасса|Pista e natës',
 mBeach:'La plage|The beach|Der Strand|La spiaggia|La playa|A praia|Plaj|Plaža|Het strand|Plaża|Пляж|Plazhi',
 mForest:'La forêt|The forest|Der Wald|La foresta|El bosque|A floresta|Orman|Šuma|Het bos|Las|Лес|Pylli',
-snowTip:'❄️ Ça glisse !|❄️ Slippery!|❄️ Glatt!|❄️ Scivoloso!|❄️ ¡Resbala!|❄️ Escorrega!|❄️ Kaygan!|❄️ Klizavo!|❄️ Glad!|❄️ Ślisko!|❄️ Скользко!|❄️ Rrëshqet!',
+snowTip:'Ça glisse !|Slippery!|Glatt!|Scivoloso!|¡Resbala!|Escorrega!|Kaygan!|Klizavo!|Glad!|Ślisko!|Скользко!|Rrëshqet!',
 diffL:'Difficulté|Difficulty|Schwierigkeit|Difficoltà|Dificultad|Dificuldade|Zorluk|Težina|Moeilijkheid|Trudność|Сложность|Vështirësia'
 };
 function flagSVG(code){const W=30,H=20;const tri=(a,b,c,v)=>v?`<rect width="10" height="20" fill="${a}"/><rect x="10" width="10" height="20" fill="${b}"/><rect x="20" width="10" height="20" fill="${c}"/>`:`<rect width="30" height="7" fill="${a}"/><rect y="6.67" width="30" height="6.67" fill="${b}"/><rect y="13.33" width="30" height="6.67" fill="${c}"/>`;
