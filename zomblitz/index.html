@@ -1127,6 +1127,8 @@ function audioInit(){
 }
 const lastS={};
 function can(k,gap){const t=AC.currentTime;if(lastS[k]!==undefined&&t-lastS[k]<gap)return false;lastS[k]=t;return true;}
+(function(){const C=CanvasRenderingContext2D.prototype,A=C.arc,El=C.ellipse;C.arc=function(x,y,r,a,b,c){return A.call(this,x,y,r>0?r:0,a,b,c);};if(El)C.ellipse=function(x,y,rx,ry,ro,a,b,c){return El.call(this,x,y,rx>0?rx:0,ry>0?ry:0,ro,a,b,c);};
+const P2=AudioParam.prototype;for(const m of['setValueAtTime','exponentialRampToValueAtTime','linearRampToValueAtTime','setTargetAtTime']){const o=P2[m];if(o)P2[m]=function(...a){if(!a.every(Number.isFinite))return this;if(m==='exponentialRampToValueAtTime'&&a[0]<=0)a[0]=.0001;try{return o.apply(this,a);}catch(_){return this;}};}})();
 function tone(f,d,type,v,f2,dest,when){const t=when||AC.currentTime,o=AC.createOscillator(),g=AC.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);
   g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(dest||sfxG);o.start(t);o.stop(t+d+.03);}
 function noise(d,v,freq,dest,when,hp){const t=when||AC.currentTime,s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();s.buffer=noiseBuf;f.type=hp?'highpass':'lowpass';f.frequency.value=freq;
@@ -1309,7 +1311,7 @@ function query(x,y,r){
 }
 
 /* ---------- État ---------- */
-const metes=[],lasers=[],novas=[],caps=[];let nextCap=45,capSaved=0;
+const metes=[],lasers=[],novas=[],caps=[];let nextCap=12,capSaved=0;
 let groanT=3,bossN=0,nextBoss=150,nextElite=50;const hazards=[],shocks=[];
 let state='menu',P,wl,timers,orbitAng=0,time=0,kills=0,hordeN=0,nextHorde=60,spawnAcc=0,uid=0,shake=0,pendingLv=0,pendingTr=0,luMode='lv',choices=[],hudT=0,bossAlive=0,bossRef=null;
 const enemies=[],bullets=[],gems=[],texts=[],hearts=[],zaps=[],ebul=[],parts=[],chests=[],slashes=[],bombs=[],booms=[];
@@ -1318,7 +1320,7 @@ const ePool=[],bPool=[],gPool=[],tPool=[],ebPool=[],pPool=[];
 function newGame(){
   buildHero();
   P={x:0,y:0,r:14,hp:120,maxHp:120,spd:182,regen:0,armor:0,magnet:130,dmg:1,crit:.05,proj:0,vamp:0,luck:0,revive:0,dodge:0,evo:{},vampAcc:0,cd:1,area:1,xpMul:1,level:1,xp:0,xpNext:xpFor(1),hurtT:0,flash:0,dirX:1,dirY:0,face:1,stats:{},img:heroImg};
-  wl={bolt:1,aura:0,orbit:0,zap:0,whip:0,bomb:0,pump:0,flame:0,boomr:0,mine:0,drone:0,chain:0,laser:0,meteor:0,nova:0};timers={bolt:0,aura:0,zap:0,whip:0,bomb:0,pump:0,boomr:0,mine:0,drone:0,chain:0,laser:0,meteor:0,nova:0};metes.length=lasers.length=novas.length=0;caps.length=0;nextCap=45;capSaved=0;mines.length=0;chains.length=0;
+  wl={bolt:1,aura:0,orbit:0,zap:0,whip:0,bomb:0,pump:0,flame:0,boomr:0,mine:0,drone:0,chain:0,laser:0,meteor:0,nova:0};timers={bolt:0,aura:0,zap:0,whip:0,bomb:0,pump:0,boomr:0,mine:0,drone:0,chain:0,laser:0,meteor:0,nova:0};metes.length=lasers.length=novas.length=0;caps.length=0;nextCap=12;capSaved=0;mines.length=0;chains.length=0;
   while(enemies.length)ePool.push(enemies.pop());while(bullets.length)bPool.push(bullets.pop());
   while(gems.length)gPool.push(gems.pop());while(texts.length)tPool.push(texts.pop());
   while(ebul.length)ebPool.push(ebul.pop());while(parts.length)pPool.push(parts.pop());
@@ -1571,10 +1573,10 @@ function weaponsUpdate(dt){
 /* ---------- Survivants à sauver ---------- */
 function spawnCaptive(){
   let x=0,y=0,ok=false;
-  for(let k=0;k<30&&!ok;k++){const a=Math.random()*TAU,d=rnd(1100,1700),o={x:P.x+Math.cos(a)*d,y:P.y+Math.sin(a)*d};if(!collide(o,60)){x=o.x;y=o.y;ok=true;}}
+  for(let k=0;k<30&&!ok;k++){const a=Math.random()*TAU,d=capSaved+caps.length===0?rnd(650,900):rnd(1000,1600),o={x:P.x+Math.cos(a)*d,y:P.y+Math.sin(a)*d};if(!collide(o,60)){x=o.x;y=o.y;ok=true;}}
   if(!ok)return;
   const L=P.level,c={x,y,t:0},ring=Math.min(14,6+Math.floor(L/12)+Math.min(capSaved,4)),pool=MAP.bosses.filter(b=>L>=50||!TYPES[b].lvl50);
-  const types=L<20?['e3']:L<45?['e3','m1']:L<80?['m1','m2','e3']:['m2','m4','m1'];
+  const types=L<8?['e1','e2']:L<20?['e2','e3']:L<45?['e3','m1']:L<80?['m1','m2','e3']:['m2','m4','m1'];
   for(let k=0;k<ring;k++){const a=k/ring*TAU,R=105+(k%2)*28;
     const tp=(k%5===0&&L>=15)?(L>=100&&k%10===0?'m4':pool[(Math.random()*pool.length)|0]):types[k%types.length];
     const e=spawnEnemy(tp,x+Math.cos(a)*R,y+Math.sin(a)*R);if(e)e.guard=c;}
@@ -1626,7 +1628,7 @@ function update(dt){
   if(time>=nextBoss){nextBoss+=Math.max(75,150-P.level*1.2);spawnBigBoss();}
   if(time>=nextElite){nextElite+=rnd(55,75)*Math.max(.45,1-P.level/90);for(let k=0;k<1+Math.floor(P.level/30);k++)spawnElite();}
 
-  if(time>=nextCap){if(caps.length<2){spawnCaptive();nextCap=time+rnd(70,100)*(P.level>=100?.8:1);}else nextCap=time+20;}
+  if(time>=nextCap){if(caps.length<2){spawnCaptive();nextCap=time+(P.level<30?rnd(40,60):rnd(65,95))*(P.level>=100?.8:1);}else nextCap=time+20;}
   updateCaptives(dt);
   buildGrid();
   updateEnemies(dt);
@@ -1637,7 +1639,7 @@ function update(dt){
   updatePickups(dt);
   for(let i=texts.length-1;i>=0;i--){const t=texts[i];t.t-=dt;t.y-=32*dt;if(t.t<=0){tPool.push(t);texts[i]=texts[texts.length-1];texts.pop();}}
   for(let i=parts.length-1;i>=0;i--){const p=parts[i];p.t-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.92;p.vy*=.92;if(p.t<=0){pPool.push(p);parts[i]=parts[parts.length-1];parts.pop();}}
-  for(const arr of[zaps,slashes,booms,lasers,novas])for(let i=arr.length-1;i>=0;i--){arr[i].t-=dt;if(arr[i].t<=0)arr.splice(i,1);}
+  for(const arr of[zaps,slashes,booms,lasers,novas])for(let i=arr.length-1;i>=0;i--){arr[i].t-=dt;if(!(arr[i].t>0&&arr[i].t<3))arr.splice(i,1);}
   for(let i=enemies.length-1;i>=0;i--)if(enemies[i].dead){ePool.push(enemies[i]);enemies[i]=enemies[enemies.length-1];enemies.pop();}
 
   hudT-=dt;if(hudT<=0){hudT=.1;updateHud();}
@@ -1879,17 +1881,17 @@ $('nick').addEventListener('input',e=>{custom.name=cleanName(e.target.value);sav
 /* ---------- Boucle + qualité automatique ---------- */
 let last=performance.now(),fAvg=16,qT=0;
 function frame(now){
+  requestAnimationFrame(frame);
   const raw=now-last,dt=Math.min(raw/1000,.05);last=now;
   if(state==='play'){
-    update(dt);
+    try{update(dt);}catch(err){console.warn(err);}
     fAvg=fAvg*.95+Math.min(raw,60)*.05;qT+=dt;
     if(qT>2){qT=0;
       if(fAvg>21&&quality>0){quality--;maxE=MAXE_Q[quality];}
       else if(fAvg<15&&quality<2){quality++;maxE=MAXE_Q[quality];}}
   }else if(state==='menu'){time+=dt;orbitAng+=dt;}
-  render();
-  if(AC&&!muted)musicTick();
-  requestAnimationFrame(frame);
+  try{render();}catch(err){console.warn(err);try{ctx.restore();ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;}catch(_){}}
+  try{if(AC&&!muted)musicTick();}catch(err){}
 }
 setMute(muted);
 function applyLang(){
